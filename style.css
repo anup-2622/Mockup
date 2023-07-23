@@ -1,0 +1,115 @@
+/* navbar */
+
+.navbar {}
+
+
+
+.nav-icons {
+    margin: 4px;
+}
+
+/* Style the active class, and buttons on mouse-over */
+.active,
+.nav-icons:hover {
+    background-color: #2d00f7;
+    color: white;
+    border-radius: 10px;
+}
+
+
+/* Dashboard */
+.dash-1 {
+    margin-left: 5rem;
+}
+
+
+@keyframes growProgressBar {
+
+    0%,
+    33% {
+        --pgPercentage: 0;
+    }
+
+    100% {
+        --pgPercentage: var(--value);
+    }
+}
+
+@property --pgPercentage {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+}
+
+div[role="progressbar"] {
+    --size: 12rem;
+    --fg: rgb(28, 182, 74);
+    --bg: #def;
+    --pgPercentage: var(--value);
+    animation: growProgressBar 3s 1 forwards;
+    width: 5rem;
+    /* height: min(100% -15% 850px); */
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background:
+        radial-gradient(closest-side, white 80%, transparent 0 99.9%, white 0),
+        conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
+    font-family: Helvetica, Arial, sans-serif;
+    /* font-size: calc(var(--size) /7); */
+    color: var(--fg);
+}
+
+div[role="progressbar"]::before {
+    counter-reset: percentage var(--value);
+    content: counter(percentage) '%';
+}
+
+
+/* media  query */
+@media only screen and (max-width: 600px) {
+    body {
+        /* background-color: lightblue; */
+        /* display: flex; */
+    }
+
+    .home {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+    }
+
+    .nav-top {
+        background-color: rgb(119, 119, 187);
+        display: none;
+        flex-direction: row;
+        bottom: 0;
+    }
+
+    .nav-notification {
+        display: none;
+    }
+
+    .nav-lists {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        ;
+    }
+
+    .nav-icons {
+        /* background-color: green; */
+    }
+
+
+    /* Profile */
+    .profile {
+        width: 100%;
+        height: 100vh;
+    }
+}
